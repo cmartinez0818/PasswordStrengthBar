@@ -109,12 +109,11 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("ResourceAsColor")
     protected void calculation(String data) {
 
-        int length = 0, uppercase = 0, lowercase = 0, digits = 0, symbols = 0, bonus = 0, requirements = 0;
-
-        int lettersOnly = 0, numbersOnly = 0, cuc = 0, clc = 0;
+        int length, uppercase = 0, lowercase = 0, digits = 0, symbols = 0, bonus = 0, requirements = 0,
+                lettersOnly = 0, numbersOnly = 0, cuc = 0, clc = 0;
 
         length = data.length();
-        for (int i = 0; i < data.length(); i++) {
+        /*for (int i = 0; i < data.length(); i++) {
             if (Character.isUpperCase(data.charAt(i)))
                 uppercase++;
             else if (Character.isLowerCase(data.charAt(i)))
@@ -124,9 +123,25 @@ public class MainActivity extends AppCompatActivity {
 
             symbols = length - uppercase - lowercase - digits;
 
+        }*/
+
+        for (char c : data.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                uppercase++;
+                cuc++;
+                }
+            else if (Character.isLowerCase(c)) {
+                lowercase++;
+                clc++;
+                }
+            else if (Character.isDigit(c)) {
+                digits++;
+                bonus++;
+                }
+            symbols = length - uppercase - lowercase - digits;
         }
 
-        for (int j = 1; j < data.length() - 1; j++) {
+        /*for (int j = 1; j < data.length() - 1; j++) {
 
             if (Character.isDigit(data.charAt(j)))
                 bonus++;
@@ -171,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-        }
+        }*/
 
         if (length > 7) {
             requirements++;
