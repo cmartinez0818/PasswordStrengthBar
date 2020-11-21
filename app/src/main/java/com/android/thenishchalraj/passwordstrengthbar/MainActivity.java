@@ -109,6 +109,29 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("ResourceAsColor")
     protected void calculation(String data) {
 
+        int Total = sumUpPoints(data);
+
+
+        if (Total >= 1 && Total <= 50) {
+            check.setText(R.string.bad);
+            passwordStrengthBar.setStrength(Total/2);
+        } else if (Total >= 51 && Total <= 70) {
+            check.setText(R.string.average);
+            passwordStrengthBar.setStrength((Total*5)/7);
+        } else if (Total >= 71 && Total <= 80) {
+            check.setText(R.string.good);
+            passwordStrengthBar.setStrength((Total*7)/8);
+        } else if (Total >= 81) {
+            check.setText(R.string.best);
+            passwordStrengthBar.setStrength(Total);
+        } else {
+            check.setText("");
+            passwordStrengthBar.setStrength(passwordStrengthBar.getMinStrength());
+        }
+
+    }
+    protected int sumUpPoints(String data) {
+
         int length, uppercase = 0, lowercase = 0, digits = 0, symbols = 0, bonus = 0, requirements = 0,
                 lettersOnly = 0, numbersOnly = 0, cuc = 0, clc = 0;
 
@@ -128,16 +151,18 @@ public class MainActivity extends AppCompatActivity {
         for (char c : data.toCharArray()) {
             if (Character.isUpperCase(c)) {
                 uppercase++;
-                cuc++;
-                }
+                if (Character.isUpperCase(c++))
+                    cuc++;
+            }
             else if (Character.isLowerCase(c)) {
                 lowercase++;
-                clc++;
-                }
+                if (Character.isLowerCase(c++))
+                    clc++;
+            }
             else if (Character.isDigit(c)) {
                 digits++;
                 bonus++;
-                }
+            }
             symbols = length - uppercase - lowercase - digits;
         }
 
@@ -220,28 +245,11 @@ public class MainActivity extends AppCompatActivity {
             numbersOnly = 1;
         }
 
-        int Total = (length * 4) + ((length - uppercase) * 2)
+        int total = (length * 4) + ((length - uppercase) * 2)
                 + ((length - lowercase) * 2) + (digits * 4) + (symbols * 6)
                 + (bonus * 2) + (requirements * 2) - (lettersOnly * length * 2)
                 - (numbersOnly * length * 3) - (cuc * 2) - (clc * 2);
-
-        if (Total >= 1 && Total <= 50) {
-            check.setText(R.string.bad);
-            passwordStrengthBar.setStrength(Total/2);
-        } else if (Total >= 51 && Total <= 70) {
-            check.setText(R.string.average);
-            passwordStrengthBar.setStrength((Total*5)/7);
-        } else if (Total >= 71 && Total <= 80) {
-            check.setText(R.string.good);
-            passwordStrengthBar.setStrength((Total*7)/8);
-        } else if (Total >= 81) {
-            check.setText(R.string.best);
-            passwordStrengthBar.setStrength(Total);
-        } else {
-            check.setText("");
-            passwordStrengthBar.setStrength(passwordStrengthBar.getMinStrength());
-        }
-
+        return total;
     }
 }
 class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {//this class helps to display password in astrisk(*) format

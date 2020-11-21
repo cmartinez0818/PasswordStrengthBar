@@ -64,6 +64,7 @@ public class PasswordStrengthBar extends LinearLayout{
 
         //init UI
         plb = view.findViewById(R.id.progressLinearBar);
+        //plb.setOrientation(LinearLayout.VERTICAL);
         pb1 = view.findViewById(R.id.pBar1);
         pb2 = view.findViewById(R.id.pBar2);
         pb3 = view.findViewById(R.id.pBar3);
