@@ -34,11 +34,11 @@ public class PasswordStrengthBar extends LinearLayout{
     //Attributes
     private int mMax = 100;
     private int mMin = 0;
-    private int mNoStrengthColor = Color.LTGRAY;
-    private int mStrengthColor1 = Color.RED;
+    //private int mNoStrengthColor = Color.LTGRAY;
+    /*private int mStrengthColor1 = Color.RED;
     private int mStrengthColor2 = Color.YELLOW;
     private int mStrengthColor3 = Color.GREEN;
-    private int mStrengthColor4 = Color.DKGRAY;
+    private int mStrengthColor4 = Color.DKGRAY;*/
 
     public PasswordStrengthBar(Context context) {
         super(context,null);
@@ -79,13 +79,13 @@ public class PasswordStrengthBar extends LinearLayout{
     /**
      * Implement the below method to set the password strength to default chosen color
      */
-    public void setStrengthColor(int noStrengthColor, int color1, int color2, int color3, int color4){
+    public void setStrengthColor(){
 
-        this.mNoStrengthColor = noStrengthColor;
-        this.mStrengthColor1 = color1;
-        this.mStrengthColor2 = color2;
-        this.mStrengthColor3 = color3;
-        this.mStrengthColor4 = color4;
+        int noStrengthColor = Color.LTGRAY;
+        int color1 = Color.RED;
+        int color2 = Color.YELLOW;
+        int color3 = Color.GREEN;
+        int color4 = Color.DKGRAY;
 
         Drawable backgroundDr = new ColorDrawable(noStrengthColor);
 

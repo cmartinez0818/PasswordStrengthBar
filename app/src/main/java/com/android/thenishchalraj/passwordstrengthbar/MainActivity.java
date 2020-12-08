@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         check = findViewById(R.id.strengthText);
         see = findViewById(R.id.visibilityButton);
 
-        passwordStrengthBar.setStrengthColor(Color.LTGRAY, mColor1, mColor2, mColor3, mColor4);
+        passwordStrengthBar.setStrengthColor();
 
         passwordField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
         int Total = sumUpPoints(data);
 
-
         if (Total >= 1 && Total <= 50) {
             check.setText(R.string.bad);
             passwordStrengthBar.setStrength(Total/2);
@@ -132,21 +131,10 @@ public class MainActivity extends AppCompatActivity {
     }
     protected int sumUpPoints(String data) {
 
-        int length, uppercase = 0, lowercase = 0, digits = 0, symbols = 0, bonus = 0, requirements = 0,
+        int uppercase = 0, lowercase = 0, digits = 0, symbols = 0, bonus = 0, requirements = 0,
                 lettersOnly = 0, numbersOnly = 0, cuc = 0, clc = 0;
 
-        length = data.length();
-        /*for (int i = 0; i < data.length(); i++) {
-            if (Character.isUpperCase(data.charAt(i)))
-                uppercase++;
-            else if (Character.isLowerCase(data.charAt(i)))
-                lowercase++;
-            else if (Character.isDigit(data.charAt(i)))
-                digits++;
-
-            symbols = length - uppercase - lowercase - digits;
-
-        }*/
+        int length = data.length();
 
         for (char c : data.toCharArray()) {
             if (Character.isUpperCase(c)) {
@@ -166,79 +154,12 @@ public class MainActivity extends AppCompatActivity {
             symbols = length - uppercase - lowercase - digits;
         }
 
-        /*for (int j = 1; j < data.length() - 1; j++) {
-
-            if (Character.isDigit(data.charAt(j)))
-                bonus++;
-
-        }
-
-        for (int k = 0; k < data.length(); k++) {
-
-            if (Character.isUpperCase(data.charAt(k))) {
-                k++;
-
-                if (k < data.length()) {
-
-                    if (Character.isUpperCase(data.charAt(k))) {
-
-                        cuc++;
-                        k--;
-
-                    }
-
-                }
-
-            }
-
-        }
-
-        for (int l = 0; l < data.length(); l++) {
-
-            if (Character.isLowerCase(data.charAt(l))) {
-                l++;
-
-                if (l < data.length()) {
-
-                    if (Character.isLowerCase(data.charAt(l))) {
-
-                        clc++;
-                        l--;
-
-                    }
-
-                }
-
-            }
-
-        }*/
-
         if (length > 7) {
             requirements++;
         }
 
         if (uppercase > 0 || lowercase > 0 || digits > 0 || symbols > 0 || bonus > 0)
             requirements++;
-
-        /*if (uppercase > 0) {
-            requirements++;
-        }
-
-        if (lowercase > 0) {
-            requirements++;
-        }
-
-        if (digits > 0) {
-            requirements++;
-        }
-
-        if (symbols > 0) {
-            requirements++;
-        }
-
-        if (bonus > 0) {
-            requirements++;
-        }*/
 
         if (digits == 0 && symbols == 0) {
             lettersOnly = 1;
