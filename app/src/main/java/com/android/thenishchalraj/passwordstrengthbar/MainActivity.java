@@ -217,7 +217,10 @@ public class MainActivity extends AppCompatActivity {
             requirements++;
         }
 
-        if (uppercase > 0) {
+        if (uppercase > 0 || lowercase > 0 || digits > 0 || symbols > 0 || bonus > 0)
+            requirements++;
+
+        /*if (uppercase > 0) {
             requirements++;
         }
 
@@ -235,7 +238,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (bonus > 0) {
             requirements++;
-        }
+        }*/
 
         if (digits == 0 && symbols == 0) {
             lettersOnly = 1;
