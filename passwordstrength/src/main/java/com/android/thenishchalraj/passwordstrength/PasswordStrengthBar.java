@@ -24,10 +24,7 @@ public class PasswordStrengthBar extends LinearLayout{
 
     //UI
     protected LinearLayout plb;
-    protected ProgressBar pb1;
-    protected ProgressBar pb2;
-    protected ProgressBar pb3;
-    protected ProgressBar pb4;
+    protected ProgressBar pb1, pb2, pb3, pb4;
 
     protected LayoutInflater mInflater;
 
@@ -155,14 +152,12 @@ public class PasswordStrengthBar extends LinearLayout{
      * Below method to set the strength of the bar
      */
     public void setStrength(int strength){
-        if(strength <= mMin){
-            //set all the progress bar to its minimum value
-            pb1.setProgress(mMin/4);
-            pb2.setProgress(mMin/4);
-            pb3.setProgress(mMin/4);
-            pb4.setProgress(mMin/4);
-        }
-        else if(strength >= mMax){
+        // default all to min
+        pb1.setProgress(mMin);
+        pb2.setProgress(mMin);
+        pb3.setProgress(mMin);
+        pb4.setProgress(mMin);
+        if(strength >= mMax){
             //set all the progress bar to its maximum value
             pb1.setProgress(mMax/4);
             pb2.setProgress(mMax/4);
@@ -173,18 +168,14 @@ public class PasswordStrengthBar extends LinearLayout{
             //set the progress bar accordingly
             if(strength-mMax/4 >= mMin/4 ){
                 pb1.setProgress(mMax/4);
-                pb2.setProgress(mMin);
-                pb3.setProgress(mMin);
-                pb4.setProgress(mMin);
+
                 strength -= (mMax/4);
                 if(strength-mMax/4 >= mMin/4 ){
                     pb2.setProgress(mMax/4);
-                    pb3.setProgress(mMin);
-                    pb4.setProgress(mMin);
+
                     strength -= (mMax/4);
                     if(strength-mMax/4 >= mMin/4 ){
                         pb3.setProgress(mMax/4);
-                        pb4.setProgress(mMin);
                         strength -= (mMax/4);
                         if(strength-mMax/4 >= mMin/4 ){
                             pb4.setProgress(mMax/4);
@@ -193,18 +184,14 @@ public class PasswordStrengthBar extends LinearLayout{
                         }
                     }else{
                         pb3.setProgress(strength);
-                        pb4.setProgress(mMin);
                     }
                 }else{
                     pb2.setProgress(strength);
-                    pb3.setProgress(mMin);
-                    pb4.setProgress(mMin);
+
                 }
             }else{
                 pb1.setProgress(strength);
-                pb2.setProgress(mMin);
-                pb3.setProgress(mMin);
-                pb4.setProgress(mMin);
+
             }
         }
     }
