@@ -34,11 +34,6 @@ public class PasswordStrengthBar extends LinearLayout{
     //Attributes
     private int mMax = 100;
     private int mMin = 0;
-    //private int mNoStrengthColor = Color.LTGRAY;
-    /*private int mStrengthColor1 = Color.RED;
-    private int mStrengthColor2 = Color.YELLOW;
-    private int mStrengthColor3 = Color.GREEN;
-    private int mStrengthColor4 = Color.DKGRAY;*/
 
     public PasswordStrengthBar(Context context) {
         super(context,null);
@@ -64,7 +59,6 @@ public class PasswordStrengthBar extends LinearLayout{
 
         //init UI
         plb = view.findViewById(R.id.progressLinearBar);
-        //plb.setOrientation(LinearLayout.VERTICAL);
         pb1 = view.findViewById(R.id.pBar1);
         pb2 = view.findViewById(R.id.pBar2);
         pb3 = view.findViewById(R.id.pBar3);
@@ -130,8 +124,6 @@ public class PasswordStrengthBar extends LinearLayout{
      * be calculated
      */
     public void setMaxStrength(int max){
-        this.mMax = max;
-
         max /= 4;
         pb1.setMax(max);
         pb2.setMax(max);
@@ -142,8 +134,6 @@ public class PasswordStrengthBar extends LinearLayout{
     @SuppressLint("NewApi")
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setMinStrength(int min){
-        this.mMin = min;
-
         min /=4;
         pb1.setMin(min);
         pb2.setMin(min);
